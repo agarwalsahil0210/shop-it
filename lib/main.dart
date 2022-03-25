@@ -11,11 +11,11 @@ void main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
         options: const FirebaseOptions(
-            apiKey: "AIzaSyA_HUyHOsppg8Xvort5_o2HTUTHGrCjCNw",
-            appId: "1:239345136436:web:acc4b3bff7caa7f32feb61",
-            messagingSenderId: "239345136436",
-            projectId: "instagram-clone-acd4d",
-            storageBucket: "instagram-clone-acd4d.appspot.com"));
+            apiKey: "AIzaSyAWu5yCA-iSB8y4BlZFFlqzeKHMR2Fhl8Y",
+            appId: "1:979050087379:web:c96ad0dfed8a06c5e4a526",
+            messagingSenderId: "979050087379",
+            projectId: "shop-it-88d93",
+            storageBucket: "shop-it-88d93.appspot.com"));
   } else {
     await Firebase.initializeApp();
   }
