@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_it/responsive/mobile_screen_layout.dart';
+
+import 'package:shop_it/screens/home_page.dart';
 
 class WebScreenLayout extends StatelessWidget {
   const WebScreenLayout({Key? key}) : super(key: key);
