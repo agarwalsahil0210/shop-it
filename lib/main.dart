@@ -5,17 +5,21 @@ import 'package:shop_it/responsive/mobile_screen_layout.dart';
 import 'package:shop_it/responsive/responsive_layout_screen.dart';
 import 'package:shop_it/responsive/web_screen_layout.dart';
 import 'package:shop_it/utils/colors.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
+  await dotenv.load(fileName: ".env");
+
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
     await Firebase.initializeApp(
-        options: const FirebaseOptions(
-            apiKey: "AIzaSyAWu5yCA-iSB8y4BlZFFlqzeKHMR2Fhl8Y",
-            appId: "1:979050087379:web:c96ad0dfed8a06c5e4a526",
-            messagingSenderId: "979050087379",
-            projectId: "shop-it-88d93",
-            storageBucket: "shop-it-88d93.appspot.com"));
+        options: FirebaseOptions(
+      apiKey: dotenv.get('apiKey'),
+      appId: dotenv.get('appId'),
+      messagingSenderId: dotenv.get('messagingSenderId'),
+      projectId: dotenv.get('projectId'),
+      storageBucket: dotenv.get('storageBucket'),
+    ));
   } else {
     await Firebase.initializeApp();
   }
