@@ -88,6 +88,15 @@ class _SignupScreenState extends State<SignupScreen> {
             children: [
               Flexible(
                 child: Container(),
+                flex: 1,
+              ),
+              const Text('Welcome to ShopIT!',
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat')),
+              Flexible(
+                child: Container(),
                 flex: 2,
               ),
               const SizedBox(
