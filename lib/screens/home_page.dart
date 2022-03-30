@@ -46,19 +46,21 @@ class _HomePageState extends State<HomePage> {
         height: 100,
         child: Card(
           elevation: 5,
-          child: Column(
-            children: [
-              Image.network(
-                image,
-                height: 60,
-                fit: BoxFit.cover,
-              ),
-              const SizedBox(height: 10),
-              Text(
-                category,
-                style: const TextStyle(fontSize: 10),
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Image.network(
+                  image,
+                  height: 60,
+                  fit: BoxFit.cover,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  category,
+                  style: const TextStyle(fontSize: 10),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -75,10 +77,6 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Shop IT'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.person),
-            onPressed: () {},
-          ),
-          IconButton(
             icon: const Icon(Icons.shopping_cart),
             onPressed: () {},
           ),
@@ -93,6 +91,11 @@ class _HomePageState extends State<HomePage> {
                 child: const Text('Log Out'),
                 value: 'Log In',
               ),
+              PopupMenuItem(
+                onTap: () {},
+                child: const Text('Profile'),
+                value: '',
+              ),
             ];
           }),
         ],
@@ -100,6 +103,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const SizedBox(height: 10),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.3,
             child: ImageSlider(
@@ -140,7 +144,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 20.0),
-            height: 220.0,
+            height: MediaQuery.of(context).size.height * 0.3,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: _loadedPhotos.length,
@@ -151,6 +155,7 @@ class _HomePageState extends State<HomePage> {
                   child: SizedBox(
                     width: 150,
                     child: InkWell(
+                      hoverColor: Colors.grey,
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => ProductDetailsPage(
@@ -184,15 +189,6 @@ class _HomePageState extends State<HomePage> {
                               style: const TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold)),
                         ],
-                        // children: <Widget>[
-                        //   ListTile(
-                        //     title: Text("$key"),
-                        //     // subtitle: new Text("${_laoded[key]}"),
-                        //   ),
-                        //   const Divider(
-                        //     height: 2.0,
-                        //   ),
-                        // ],
                       ),
                     ),
                   ),
