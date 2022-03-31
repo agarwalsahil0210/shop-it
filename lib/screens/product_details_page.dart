@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shop_it/widgets/counter_fav.dart';
 import "package:velocity_x/velocity_x.dart";
 
-class ProductDetailsPage extends StatelessWidget {
+class ProductDetailsPage extends StatefulWidget {
   String title;
 
   var price;
@@ -16,6 +17,11 @@ class ProductDetailsPage extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
+}
+
+class _ProductDetailsPageState extends State<ProductDetailsPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -25,6 +31,16 @@ class ProductDetailsPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.search, color: Colors.black),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.shopping_cart, color: Colors.black),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -32,23 +48,38 @@ class ProductDetailsPage extends StatelessWidget {
               Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Image(
               alignment: Alignment.center,
-              image: NetworkImage(image),
+              image: NetworkImage(widget.image),
               height: 300,
             ),
             const SizedBox(height: 20),
             VStack(
               [
-                Text(title,
+                Text(widget.title,
                     textAlign: TextAlign.start,
                     style: const TextStyle(
                         fontSize: 20, fontWeight: FontWeight.bold)),
                 10.heightBox,
-                Text(description,
+                Text(widget.description,
                     textAlign: TextAlign.start, style: const TextStyle()),
                 10.heightBox,
-                ["Price : \$".text.gray500.make(), Text(price.toString())].row()
+                [
+                  "Price : \$".text.gray500.make(),
+                  Text(widget.price.toString())
+                ].row(),
+                10.heightBox,
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.black,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20))),
+                    onPressed: () {},
+                    child: const Text(
+                      'Buy Now',
+                    )),
+                10.heightBox,
+                const CounterWithFavBtn(),
               ],
-            ).backgroundColor(Vx.gray200).p12(),
+            ).p20(),
           ]),
         ),
       ),

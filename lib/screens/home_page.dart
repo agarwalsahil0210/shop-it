@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_it/resources/auth_methods.dart';
 import 'package:shop_it/screens/login_screen.dart';
@@ -38,6 +39,29 @@ class _HomePageState extends State<HomePage> {
     _fetchData();
   }
 
+  Widget imageSlider() {
+    return CarouselSlider(
+      options: CarouselOptions(
+        autoPlay: true,
+        viewportFraction: 1.0,
+        height: 200.0,
+      ),
+      items: [
+        'https://images-eu.ssl-images-amazon.com/images/G/31/img21/Wireless/WLA/TS/D37847648_Accessories_savingdays_Jan22_Cat_PC_1500.jpg',
+        'https://images-eu.ssl-images-amazon.com/images/G/31/img2021/Vday/bwl/English.jpg',
+        'https://images-eu.ssl-images-amazon.com/images/G/31/img22/Wireless/AdvantagePrime/BAU/14thJan/D37196025_IN_WL_AdvantageJustforPrime_Jan_Mob_ingress-banner_1242x450.jpg',
+        'https://images-na.ssl-images-amazon.com/images/G/31/Symbol/2020/00NEW/1242_450Banners/PL31_copy._CB432483346_.jpg',
+        'https://images-na.ssl-images-amazon.com/images/G/31/img21/shoes/September/SSW/pc-header._CB641971330_.jpg',
+      ].map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Image.network(i, fit: BoxFit.cover, height: 200);
+          },
+        );
+      }).toList(),
+    );
+  }
+
   Widget _buildCategoryProduct(
       {required String image, required String category}) {
     return Flexible(
@@ -74,7 +98,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: mobileSearchColor,
         centerTitle: true,
-        title: const Text('Shop IT'),
+        title: const Text('Shopit'),
         actions: [
           IconButton(
             icon: const Icon(Icons.shopping_cart),
@@ -105,12 +129,13 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.3,
-              child: ImageSlider(
-                loadedPhotos: _loadedPhotos,
-              ),
-            ),
+            imageSlider(),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height * 0.3,
+            //   child: ImageSlider(
+            //     loadedPhotos: _loadedPhotos,
+            //   ),
+            // ),
             const SizedBox(height: 10),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -145,15 +170,16 @@ class _HomePageState extends State<HomePage> {
             ),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 20.0),
-              height: MediaQuery.of(context).size.height * 0.3,
+              height: MediaQuery.of(context).size.height * 0.4,
               child: ListView.builder(
-                scrollDirection: Axis.horizontal,
+                scrollDirection: Axis.vertical,
                 itemCount: _loadedPhotos.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SizedBox(
                       width: 150,
+                      height: 150,
                       child: InkWell(
                         hoverColor: Colors.grey,
                         onTap: () {
@@ -166,29 +192,43 @@ class _HomePageState extends State<HomePage> {
                                         ['description'],
                                   )));
                         },
-                        child: Column(
+                        child: Row(
                           children: [
-                            Flexible(
-                              fit: FlexFit.tight,
-                              child: Text(
-                                _loadedPhotos[index]['title'],
-                                // softWrap: false,
-                                // maxLines: 1,
-                                // overflow: TextOverflow.fade,
+                            Image.network(
+                              _loadedPhotos[index]['image'],
+                              width: MediaQuery.of(context).size.width * 0.3,
+                            ),
+                            Container(
+                              margin: const EdgeInsets.only(top: 20),
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    _loadedPhotos[index]['title'],
+                                    textAlign: TextAlign.center,
+                                    // softWrap: false,
+                                    // maxLines: 1,
+                                    // overflow: TextOverflow.fade,
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text('Price \$'),
+                                      Text(
+                                          _loadedPhotos[index]['price']
+                                              .toString(),
+                                          // textAlign: TextAlign.left,
+                                          style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                            Expanded(
-                                child: Image.network(
-                              _loadedPhotos[index]['image'],
-                              width: 200,
-                            )),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Text(_loadedPhotos[index]['price'].toString(),
-                                textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold)),
                           ],
                         ),
                       ),
