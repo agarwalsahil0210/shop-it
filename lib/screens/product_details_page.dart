@@ -27,22 +27,29 @@ class ProductDetailsPage extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image(
-                alignment: Alignment.center,
-                image: NetworkImage(image),
-                height: 300,
-              ),
-              const SizedBox(height: 20),
-              Text(title,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold)),
-            ],
-          ),
+        child: SingleChildScrollView(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+            Image(
+              alignment: Alignment.center,
+              image: NetworkImage(image),
+              height: 300,
+            ),
+            const SizedBox(height: 20),
+            VStack(
+              [
+                Text(title,
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold)),
+                10.heightBox,
+                Text(description,
+                    textAlign: TextAlign.start, style: const TextStyle()),
+                10.heightBox,
+                ["Price : \$".text.gray500.make(), Text(price.toString())].row()
+              ],
+            ).backgroundColor(Vx.gray200).p12(),
+          ]),
         ),
       ),
     );
