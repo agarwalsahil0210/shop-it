@@ -73,11 +73,16 @@ class _HomePageState extends State<HomePage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Image.network(
+                Image.asset(
                   image,
-                  height: 60,
+                  height: 65,
                   fit: BoxFit.cover,
                 ),
+                // Image.network(
+                //   image,
+                //   height: 60,
+                //   fit: BoxFit.cover,
+                // ),
                 const SizedBox(height: 10),
                 Text(
                   category,
@@ -147,25 +152,15 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildCategoryProduct(
-                    image:
-                        'https://i.pinimg.com/originals/bd/ef/cb/bdefcbc72735f64db17f3250b1e64245.png',
-                    category: 'T shirts'),
+                    image: 'assets/tshirt.png', category: 'T shirts'),
                 _buildCategoryProduct(
-                    image:
-                        'https://e7.pngegg.com/pngimages/528/973/png-clipart-white-pullover-hoodie-illustration-mexico-hoodie-bluza-clothing-mercadolibre-hoodie-white-sweatshirt.png',
-                    category: 'Hoodies'),
+                    image: 'assets/hoodie1.png', category: 'Hoodies'),
                 _buildCategoryProduct(
-                    image:
-                        'http://assets.stickpng.com/images/585680404f6ae202fedf26f0.png',
-                    category: 'Jackets'),
+                    image: 'assets/jacket.png', category: 'Jackets'),
                 _buildCategoryProduct(
-                    image:
-                        'https://www.pngall.com/wp-content/uploads/5/Formal-Cotton-Pant-PNG-Free-Download.png',
-                    category: 'Pants'),
+                    image: 'assets/pant.png', category: 'Pants'),
                 _buildCategoryProduct(
-                    image:
-                        'https://www.freepnglogos.com/uploads/shoes-png/dance-shoes-png-transparent-dance-shoes-images-5.png',
-                    category: 'Shoes'),
+                    image: 'assets/shoes.png', category: 'Shoes'),
               ],
             ),
             Container(
@@ -192,44 +187,48 @@ class _HomePageState extends State<HomePage> {
                                         ['description'],
                                   )));
                         },
-                        child: Row(
-                          children: [
-                            Image.network(
-                              _loadedPhotos[index]['image'],
-                              width: MediaQuery.of(context).size.width * 0.3,
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(top: 20),
-                              width: MediaQuery.of(context).size.width * 0.6,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    _loadedPhotos[index]['title'],
-                                    textAlign: TextAlign.center,
-                                    // softWrap: false,
-                                    // maxLines: 1,
-                                    // overflow: TextOverflow.fade,
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text('Price \$'),
-                                      Text(
-                                          _loadedPhotos[index]['price']
-                                              .toString(),
-                                          // textAlign: TextAlign.left,
-                                          style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold)),
-                                    ],
-                                  ),
-                                ],
+                        child: Container(
+                          // color: Colors.grey[200],
+                          child: Row(
+                            children: [
+                              Image.network(
+                                _loadedPhotos[index]['image'],
+                                width: MediaQuery.of(context).size.width * 0.3,
                               ),
-                            ),
-                          ],
+                              Container(
+                                margin: const EdgeInsets.only(top: 20),
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      _loadedPhotos[index]['title'],
+                                      textAlign: TextAlign.center,
+                                      // softWrap: false,
+                                      // maxLines: 1,
+                                      // overflow: TextOverflow.fade,
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Text('Price \$'),
+                                        Text(
+                                            _loadedPhotos[index]['price']
+                                                .toString(),
+                                            // textAlign: TextAlign.left,
+                                            style: const TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

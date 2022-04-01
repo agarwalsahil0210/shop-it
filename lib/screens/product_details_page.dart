@@ -28,16 +28,22 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
           onPressed: () => Navigator.of(context).pop(),
         ),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.search, color: Colors.black),
+            icon: const Icon(
+              Icons.search,
+            ),
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.shopping_cart, color: Colors.black),
+            icon: const Icon(
+              Icons.shopping_cart,
+            ),
             onPressed: () {},
           ),
         ],
@@ -69,7 +75,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                 10.heightBox,
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: Colors.black,
+                        primary: Colors.grey[600],
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20))),
                     onPressed: () {},
