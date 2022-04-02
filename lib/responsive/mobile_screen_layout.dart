@@ -49,7 +49,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         onPageChanged: onPageChanged,
       ),
       bottomNavigationBar: CupertinoTabBar(
-        backgroundColor: mobileBackgroundColor,
+        backgroundColor: const Color.fromARGB(255, 59, 58, 58),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
